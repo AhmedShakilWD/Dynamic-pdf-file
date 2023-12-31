@@ -1,7 +1,13 @@
 <?php
-    require("fpdf.php");
-    $pdf = new FPDF();
-    $pdf->AddPage();
-    $pdf->Image("Certificate.jpg",0,0,210,140);
-    $pdf->Output("test.pdf","F");
+     header('content-type:image/jpeg');
+     $font="BRUSHSCI.TTF";
+     $image=imagecreatefromjpeg("Certificate.jpg");
+     $color=imagecolorallocate($image,19,21,22);
+     $name=$_POST["name"];
+    //  $file=time();
+    //  $file_path="certificate/".$name.".jpg";
+    //  $file_path_pdf="certificate/".$name.".pdf";
+     imagettftext($image,40,0,220,220,$color,$font,$name);
+     imagejpeg($image);
+     imagedestroy($image);
 ?>

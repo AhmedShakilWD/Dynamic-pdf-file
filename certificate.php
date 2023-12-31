@@ -1,14 +1,17 @@
 <?php
 if(isset($_POST["submit"])){
-    //header('content-type:image/jpeg');
+    // header('content-type:image/jpeg');
     $font="BRUSHSCI.TTF";
-    $image=imagecreatefromjpeg("Certificate.jpg");
+    $font2="AGENCYB.TTF";
+    $image=imagecreatefromjpeg("innobativeSkills.jpg");
     $color=imagecolorallocate($image,19,21,22);
     $name=$_POST["name"];
+    $ins_name=$_POST["course"];
     $file=time();
     $file_path="certificate/".$name.".jpg";
     $file_path_pdf="certificate/".$name.".pdf";
-    imagettftext($image,80,0,750,760,$color,$font,$name);
+    imagettftext($image,80,0,420,480,$color,$font,$name);
+    imagettftext($image,30,0,725,710,$color,$font2,$ins_name);
     imagejpeg($image,$file_path);
     imagedestroy($image);
     // phpinfo();
@@ -20,6 +23,9 @@ if(isset($_POST["submit"])){
 }
 ?>
 <form method="post">
-    <input type="text" name="name">
+    <label for="name">User Name</label>
+    <input type="text" id="name" name="name">
+    <label for="course">Course Name</label>
+    <input type="text"  id= "course" name="course">
     <input type="submit" name="submit">
 </form>
