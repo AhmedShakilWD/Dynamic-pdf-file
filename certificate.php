@@ -10,15 +10,15 @@ if(isset($_POST["submit"])){
     $file=time();
     $file_path="certificate/".$name.".jpg";
     $file_path_pdf="certificate/".$name.".pdf";
-    imagettftext($image,80,0,420,480,$color,$font,$name);
-    imagettftext($image,30,0,725,710,$color,$font2,$ins_name);
+    imagettftext($image,75,0,390,490,$color,$font,$name);
+    imagettftext($image,30,0,725,700,$color,$font2,$ins_name);
     imagejpeg($image,$file_path);
     imagedestroy($image);
     // phpinfo();
     require("fpdf.php");
-    $pdf = new FPDF();
+    $pdf = new FPDF('L','in',[11.7,8.27]);
     $pdf->AddPage();
-    $pdf->Image($file_path,0,0,210,140);
+    $pdf->Image($file_path,0,0,11.7,8.27);
     $pdf->Output($file_path_pdf,"F");
 }
 ?>
